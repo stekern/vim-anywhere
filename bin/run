@@ -38,7 +38,7 @@ done
 AW_PATH=$HOME/.vim-anywhere
 TMPFILE_DIR=/tmp/vim-anywhere
 TMPFILE=$TMPFILE_DIR/doc-$(date +"%y%m%d%H%M%S")
-VIM_OPTS=--nofork
+VIM_OPTS=-f
 
 # Use ~/.gvimrc.min or ~/.vimrc.min if one exists
 VIMRC_PATH=($HOME/.gvimrc.min $HOME/.vimrc.min)
@@ -56,7 +56,7 @@ touch $TMPFILE
 # Linux
 if [[ $OSTYPE == "linux-gnu" ]]; then
   chmod o-r $TMPFILE # Make file only readable by you
-  gvim $VIM_OPTS $TMPFILE
+  gnome-terminal --disable-factory -e "zsh -i -c 'vim +startinsert $VIM_OPTS $TMPFILE'"
   cat $TMPFILE | xclip -selection clipboard
 
 # OSX
